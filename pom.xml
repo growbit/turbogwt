@@ -101,6 +101,49 @@
             <plugins>
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-javadoc-plugin</artifactId>
+                    <version>${maven-javadoc-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>build-upload-javadocs</id>
+                            <phase>site</phase>
+                            <goals>
+                                <goal>aggregate</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>com.github.github</groupId>
+                    <artifactId>site-maven-plugin</artifactId>
+                    <version>${github.version}</version>
+                    <configuration>
+                        <!-- <dryRun>true</dryRun> -->
+                        <message>Creating site for ${project.version}</message>
+                        <!-- github > sets the ~/.m2/setting.xml server id profile -->
+                        <server>github</server>
+                        <excludes>
+                            <exclude>*.DS_Store</exclude>
+                            <exclude>*.sh</exclude>
+                            <exclude>options</exclude>
+                            <exclude>packages</exclude>
+                        </excludes>
+                        <force>true</force>
+                        <merge>true</merge>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>site</phase>
+                            <goals>
+                                <goal>site</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-checkstyle-plugin</artifactId>
                     <version>${maven-checkstyle-plugin.version}</version>
                     <configuration>
@@ -172,6 +215,14 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>com.github.github</groupId>
+                <artifactId>site-maven-plugin</artifactId>
+                <version>${github.version}</version>
+            </plugin>
+        </plugins>
     </build>
 
     <dependencyManagement>
