@@ -88,7 +88,7 @@
         <mockito.version>1.9.5</mockito.version>
 
         <!-- GitHub Sites -->
-        <github.version>0.8</github.version>
+        <github.version>0.9</github.version>
 
         <!-- Used for releasing to sonatype as command line parameter -->
         <gpg.passphrase>SetAsParam</gpg.passphrase>
