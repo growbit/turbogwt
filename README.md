@@ -15,8 +15,12 @@ These are the current TurboG sub-projects.
 * [TurboG Databind](https://github.com/growbit/turbogwt-databind) - Databind framework designed for MVP applications.
 
 ## Extensions
-* [TurboG GWTP](https://github.com/growbit/turbogwt-gwtp) - TurboG integration with [GWT-Platform](https://github.com/ArcBees/GWTP).
+* [TurboG GWTP](https://github.com/growbit/turbogwt-gwtp) - TurboG integration to [GWT-Platform](https://github.com/ArcBees/GWTP).
  
 
 ## Tools
 * [TurboG Checkstyle](https://github.com/growbit/turbogwt-checkstyle) - Checkstyle specifications and implementations for TurboG projects.
+
+License
+==
+Turbo GWT is freely distributable under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html)
