@@ -18,7 +18,7 @@ These are the current TurboG sub-projects.
 * [Turbo GWT GWT-Platform](https://github.com/growbit/turbogwt-gwtp) - TurboG integration to [GWT-Platform](https://github.com/ArcBees/GWTP).
  
 ### Tools
-* [Turbo GWT Checkstyle](https://github.com/growbit/turbogwt-checkstyle) - Checkstyle specifications and implementations for TurboG projects.
+* [Turbo GWT Checkstyle](https://github.com/growbit/turbogwt-checkstyle) - Checkstyle specifications and implementations for TurboG modules.
  
 ## Community
 * [Turbo GWT Google Group](http://groups.google.com/d/forum/turbogwt) - Share ideas and ask for help.
