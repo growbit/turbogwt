@@ -24,5 +24,4 @@ These are the current TurboG sub-projects.
 * [Turbo GWT Google Group](http://groups.google.com/d/forum/turbogwt) - Share ideas and ask for help.
 
 ## License
-
 Turbo GWT is freely distributable under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html)
