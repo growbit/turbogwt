@@ -62,7 +62,7 @@
 
         <!-- Maven -->
         <build-helper-maven-plugin.version>1.8</build-helper-maven-plugin.version>
-        <gwt-maven-plugin.version>2.6.0-rc3</gwt-maven-plugin.version>
+        <gwt-maven-plugin.version>2.6.0</gwt-maven-plugin.version>
         <lifecycle-mapping-plugin.version>1.0.0</lifecycle-mapping-plugin.version>
         <maven-checkstyle-plugin.version>2.11</maven-checkstyle-plugin.version>
         <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
