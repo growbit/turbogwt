@@ -9,7 +9,7 @@ Turbo GWT (*TurboG*)
 These are the current TurboG sub-projects.
 
 ### Core
-* [Turbo GWT Core](https://github.com/growbit/turbogwt-core) - Overlay Types utilities, including JsArrayList - an implementation of java.util.List wrapping JsArray.
+* [Turbo GWT Core](https://github.com/growbit/turbogwt-core) - Overall utilities and a great HTTP module, innovating the way you do requests with GWT.
 
 ### MVP
 * [Turbo GWT Databind](https://github.com/growbit/turbogwt-databind) - Databind framework designed for MVP applications.
