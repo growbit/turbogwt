@@ -1,7 +1,7 @@
 Turbo GWT (*TurboG*)
 ==
 
-**Turbo GWT** is a suite of libs, inspired by famous Javascript MVVM frameworks like Knockout.js and Angular.js, intended to speed up development of GWT applications grounded on the MVP pattern.
+**Turbo GWT** is a suite of libs intended to speed up development of GWT applications. It aims to promote a fluent and enjoyable programming.
 
 
 ## Modules
@@ -9,7 +9,7 @@ Turbo GWT (*TurboG*)
 These are the current TurboG sub-projects.
 
 ### Core
-* [Turbo GWT Core](https://github.com/growbit/turbogwt-core) - Overall utilities and a great HTTP module, innovating the way you do requests with GWT.
+* [Turbo GWT Core](https://github.com/growbit/turbogwt-core) - Native (JS) utilities and a great HTTP module, innovating the way you do requests with GWT.
 
 ### MVP
 * [Turbo GWT Databind](https://github.com/growbit/turbogwt-databind) - Databind framework designed for MVP applications.
