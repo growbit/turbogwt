@@ -9,7 +9,7 @@ Turbo GWT (*TurboG*)
 These are the current TurboG sub-projects.
 
 ### Core
-* [Turbo GWT Core](https://github.com/growbit/turbogwt-core) - Native (JS) utilities and a great HTTP module, innovating the way you do requests with GWT.
+* [Turbo GWT Core](https://github.com/growbit/turbogwt-core) - Native (JS) utilities and collections.
 
 ### Net
 * [Turbo GWT HTTP](https://github.com/growbit/turbogwt-http) - Convenient API for managing and performing requests.
