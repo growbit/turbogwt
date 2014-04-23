@@ -12,7 +12,7 @@ These are the current TurboG sub-projects.
 * [Turbo GWT Core](https://github.com/growbit/turbogwt-core) - Native (JS) utilities and a great HTTP module, innovating the way you do requests with GWT.
 
 ### Net
-[Turbo GWT HTTP](https://github.com/growbit/turbogwt-http) - Convenient API for managing and performing requests.
+* [Turbo GWT HTTP](https://github.com/growbit/turbogwt-http) - Convenient API for managing and performing requests.
 
 ### MVP
 * [Turbo GWT Databind](https://github.com/growbit/turbogwt-databind) - Databind framework designed for MVP applications.
