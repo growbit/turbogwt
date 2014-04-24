@@ -22,6 +22,9 @@ These are the current TurboG sub-projects.
  
 ### Tools
 * [Turbo GWT Checkstyle](https://github.com/growbit/turbogwt-checkstyle) - Checkstyle specifications and implementations for TurboG modules.
+
+## How to contribute?
+* [Roadmap](https://github.com/growbit/turbogwt/wiki/ROADMAP)
  
 ## Community
 * [Turbo GWT Google Group](http://groups.google.com/d/forum/turbogwt) - Share ideas and ask for help.
