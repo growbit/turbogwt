@@ -172,7 +172,6 @@
           <version>${maven-deploy-plugin.version}</version>
         </plugin>
 
-
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
@@ -212,14 +211,6 @@
             <mode>htmlunit</mode>
             <testTimeOut>180</testTimeOut>
           </configuration>
-          <executions>
-            <execution>
-              <phase>test</phase>
-              <goals>
-                <goal>test</goal>
-              </goals>
-            </execution>
-          </executions>
 
           <dependencies>
             <dependency>
