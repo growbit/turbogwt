@@ -243,9 +243,7 @@
             <useReleaseProfile>false</useReleaseProfile>
             <releaseProfiles>release</releaseProfiles>
             <autoVersionSubmodules>true</autoVersionSubmodules>
-            <arguments>-Psonatype-oss-release -Prelease -Dgpg.passphrase=${gpg.passphrase} -Dcheckstyle.skip
-              -DskipTests
-            </arguments>
+            <arguments>-Psonatype-oss-release -Prelease -Dgpg.passphrase=${gpg.passphrase} -Dcheckstyle.skip</arguments>
           </configuration>
         </plugin>
       </plugins>
