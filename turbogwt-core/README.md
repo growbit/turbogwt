@@ -1,7 +1,7 @@
-Turbo GWT Core [![Build Status](https://travis-ci.org/growbit/turbogwt/turbogwt-core.svg?branch=master)](https://travis-ci.org/growbit/turbogwt/turbogwt-core)
+Turbo GWT Core
 ==
 
-**Turbo GWT Core** contains JavaScriptObject extensions for performing common operations faster in production. These classes are reused across other TurboG modules.
+**Turbo GWT Core** contains native utilities to perform common operations faster.
 
 ## Highlights
 
@@ -71,7 +71,7 @@ Turbo GWT Core is currently available at maven central.
 <dependency>
     <groupId>org.turbogwt.core</groupId>
     <artifactId>turbogwt-core</artifactId>
-    <version>0.3.0</version>
+    <version>0.4.0</version>
 </dependency>
 ```
 
