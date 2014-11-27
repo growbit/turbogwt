@@ -273,7 +273,6 @@
           <maxmemory>2048</maxmemory>
           <failOnError>true</failOnError>
 
-          <excludePackageNames>org.turbogwt.tools</excludePackageNames>
           <reportOutputDirectory>${project.build.directory}/staging</reportOutputDirectory>
 
           <links>
