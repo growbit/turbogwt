@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Grow Bit
+ * Copyright 2015 Grow Bit
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,13 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.turbogwt.core.util;
+package org.turbogwt.core.events;
 
 import com.google.gwt.dom.client.NativeEvent;
 import com.google.gwt.event.shared.EventHandler;
 
 /**
- * Listener for native events.
+ * Handler for native events.
+ *
+ * @see Events
+ *
+ * @author Danilo Reinert
  */
 public interface NativeHandler extends EventHandler {
     public void onEvent(NativeEvent e);

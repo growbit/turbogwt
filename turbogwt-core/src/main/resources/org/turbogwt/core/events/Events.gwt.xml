@@ -18,12 +18,5 @@
     <!-- Inherit the core Web Toolkit stuff. -->
     <inherits name="com.google.gwt.user.User"/>
 
-    <!-- Inherit the core Turbo GWT stuff. -->
-    <inherits name="org.turbogwt.core.collections.Collections"/>
-    <inherits name="org.turbogwt.core.event.Event"/>
-    <inherits name="org.turbogwt.core.util.Util"/>
-
-    <!--
-    <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock.java,**/*Stub.java"/>
-    -->
+    <source path="" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock,**/*Stub.java.java"/>
 </module>
