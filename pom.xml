@@ -27,13 +27,14 @@
   <artifactId>turbogwt</artifactId>
   <version>0.5.0-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <name>Turbo GWT</name>
+  <name>TurboGWT</name>
   <inceptionYear>2014</inceptionYear>
   <url>http://turbogwt.org</url>
 
   <modules>
     <module>turbogwt-checkstyle</module>
     <module>turbogwt-core</module>
+    <module>turbogwt-mvp</module>
   </modules>
 
   <scm>

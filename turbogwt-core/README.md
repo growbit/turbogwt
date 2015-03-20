@@ -61,10 +61,10 @@ With Overlays, you can avoid using JSNI for most common operations:
 * [Javadocs](http://growbit.github.io/turbogwt/turbogwt-core/javadoc/apidocs/index.html)
 
 ## Community
-* [Turbo GWT Google Group](http://groups.google.com/d/forum/turbogwt) - Share ideas and ask for help.
+* [TurboGWT Google Group](http://groups.google.com/d/forum/turbogwt) - Share ideas and ask for help.
 
 ## Downloads
-Turbo GWT Core is currently available at maven central.
+TurboGWT-Core is currently available at maven central.
 
 ### Maven
 ```
@@ -79,4 +79,4 @@ Turbo GWT Core is currently available at maven central.
 * [Thomas Broyer](https://plus.google.com/u/0/+ThomasBroyer) for contributing with [JsCollections](http://code.google.com/p/gwt-in-the-air/source/browse/#svn%2Ftrunk%2Fsrc%2Fnet%2Fltgt%2Fgwt%2Fjscollections%2Fclient%253Fstate%253Dclosed).
 
 ## License
-Turbo GWT Core is freely distributable under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html)
+TurboGWT-Core is freely distributable under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0.html)
