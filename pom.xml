@@ -1,5 +1,5 @@
 <!--
-  ~ Copyright 2014 Grow Bit
+  ~ Copyright 2015 Grow Bit
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
@@ -32,7 +32,6 @@
   <url>http://turbogwt.org</url>
 
   <modules>
-    <module>turbogwt-checkstyle</module>
     <module>turbogwt-core</module>
     <module>turbogwt-mvp</module>
   </modules>
@@ -98,7 +97,7 @@
     <!-- Maven -->
     <build-helper-maven-plugin.version>1.8</build-helper-maven-plugin.version>
     <lifecycle-mapping-plugin.version>1.0.0</lifecycle-mapping-plugin.version>
-    <maven-checkstyle-plugin.version>2.11</maven-checkstyle-plugin.version>
+    <maven-checkstyle-plugin.version>2.14</maven-checkstyle-plugin.version>
     <maven-compiler-plugin.version>3.1</maven-compiler-plugin.version>
     <maven-deploy-plugin.version>2.8.1</maven-deploy-plugin.version>
     <maven-gpg-plugin.version>1.4</maven-gpg-plugin.version>
@@ -136,26 +135,14 @@
           <artifactId>maven-checkstyle-plugin</artifactId>
           <version>${maven-checkstyle-plugin.version}</version>
           <configuration>
-            <configLocation>/turbogwt-checkstyle.xml</configLocation>
-            <suppressionsLocation>/turbogwt-suppressions.xml</suppressionsLocation>
-            <propertiesLocation>/turbogwt-checkstyle.properties</propertiesLocation>
-            <propertyExpansion>basedir=${basedir}</propertyExpansion>
+            <configLocation>checkstyle.xml</configLocation>
             <consoleOutput>true</consoleOutput>
             <failsOnError>true</failsOnError>
-            <linkXRef>false</linkXRef>
             <includeTestSourceDirectory>true</includeTestSourceDirectory>
           </configuration>
-          <dependencies>
-            <dependency>
-              <groupId>org.turbogwt.tools</groupId>
-              <artifactId>turbogwt-checkstyle</artifactId>
-              <version>${project.version}</version>
-            </dependency>
-          </dependencies>
           <executions>
             <execution>
-              <id>validate</id>
-              <phase>validate</phase>
+              <phase>verify</phase>
               <goals>
                 <goal>checkstyle</goal>
               </goals>
@@ -230,87 +217,7 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <version>${maven-source-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar-no-fork</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-gpg-plugin</artifactId>
-        <version>1.5</version>
-        <executions>
-          <execution>
-            <id>sign-artifacts</id>
-            <phase>verify</phase>
-            <goals>
-              <goal>sign</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.sonatype.plugins</groupId>
-        <artifactId>nexus-staging-maven-plugin</artifactId>
-        <version>1.6.3</version>
-        <extensions>true</extensions>
-        <configuration>
-          <serverId>ossrh</serverId>
-          <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-          <autoReleaseAfterClose>true</autoReleaseAfterClose>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>${maven-javadoc-plugin.version}</version>
-        <inherited>true</inherited>
-
-        <configuration>
-          <maxmemory>2048</maxmemory>
-          <failOnError>true</failOnError>
-
-          <reportOutputDirectory>${project.build.directory}/staging</reportOutputDirectory>
-
-          <links>
-            <link>http://download.oracle.com/javase/7/docs/api/</link>
-            <link>http://google-web-toolkit.googlecode.com/svn/javadoc/latest/</link>
-          </links>
-
-          <excludes>
-            <exclude>**/*.txt</exclude>
-          </excludes>
-
-          <header>
-            <![CDATA[
-                            <a href="https://github.com/growbit/turbogwt" target="_blank">Back to Turbo GWT Home</a>
-                        ]]>
-          </header>
-        </configuration>
-
-        <executions>
-          <execution>
-            <id>build-javadoc</id>
-            <phase>site</phase>
-            <goals>
-              <goal>aggregate</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
+        <artifactId>maven-checkstyle-plugin</artifactId>
       </plugin>
 
       <plugin>
@@ -413,7 +320,87 @@
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-source-plugin</artifactId>
+            <version>${maven-source-plugin.version}</version>
+            <executions>
+              <execution>
+                <id>attach-sources</id>
+                <goals>
+                  <goal>jar-no-fork</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.5</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                  <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+            <version>1.6.3</version>
+            <extensions>true</extensions>
+            <configuration>
+              <serverId>ossrh</serverId>
+              <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+              <autoReleaseAfterClose>true</autoReleaseAfterClose>
+            </configuration>
+          </plugin>
+
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${maven-javadoc-plugin.version}</version>
+            <inherited>true</inherited>
+
+            <configuration>
+              <maxmemory>2048</maxmemory>
+              <failOnError>true</failOnError>
+
+              <reportOutputDirectory>${project.build.directory}/staging</reportOutputDirectory>
+
+              <links>
+                <link>http://download.oracle.com/javase/7/docs/api/</link>
+                <link>http://google-web-toolkit.googlecode.com/svn/javadoc/latest/</link>
+              </links>
+
+              <excludes>
+                <exclude>**/*.txt</exclude>
+              </excludes>
+
+              <header>
+                <![CDATA[
+                            <a href="https://github.com/growbit/turbogwt" target="_blank">Back to TurboGWT Home</a>
+                        ]]>
+              </header>
+            </configuration>
+
+            <executions>
+              <execution>
+                <id>build-javadoc</id>
+                <phase>site</phase>
+                <goals>
+                  <goal>aggregate</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>
