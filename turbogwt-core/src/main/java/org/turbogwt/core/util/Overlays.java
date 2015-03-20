@@ -192,7 +192,7 @@ public final class Overlays {
         } else {
             int length = values.length();
             String[] ret = new String[length];
-            for (int i = 0, l = length; i < l; i++) {
+            for (int i = 0; i < length; i++) {
                 ret[i] = values.get(i);
             }
             return ret;

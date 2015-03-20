@@ -17,30 +17,47 @@ package org.turbogwt.core.util;
 
 import javax.annotation.Nullable;
 
+import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.dom.client.Document;
 import com.google.gwt.dom.client.Element;
+import com.google.web.bindery.event.shared.HandlerRegistration;
 
 /**
- * Utility methods derived from browser's native JS.
+ * Utility methods derived from browser's native JS API.
  *
  * @author Danilo Reinert
  */
 public final class Native {
 
+    private static HandlerRegistration nullHandlerReg = new HandlerRegistration() {
+        @Override
+        public void removeHandler() {
+        }
+    };
+
     private Native() {
     }
 
-    public static void addEventListener(String elementId, String type, EventListener listener) {
-        addEventListener(Document.get().getElementById(elementId), type, listener);
+    public static HandlerRegistration addEventListener(String elementId, String type, NativeHandler listener) {
+        return addEventListener(Document.get().getElementById(elementId), type, listener);
     }
 
-    public static void addEventListener(Element element, String type, EventListener listener) {
-        if (element != null) addEventListener(element, type, listener);
+    public static HandlerRegistration addEventListener(final Element element, final String type,
+                                                       final NativeHandler listener) {
+        if (element != null) {
+            final JavaScriptObject nativeListener = addEventListenerNative(element, type, listener);
+            return new HandlerRegistration() {
+                @Override
+                public void removeHandler() {
+                    removeEventListenerNative(element, type, nativeListener);
+                }
+            };
+        }
+        return nullHandlerReg;
     }
 
     public static native boolean isNumeric(@Nullable String text) /*-{
-        if (text)
-            return !isNaN(text);
+        if (text) return !isNaN(text);
         return false;
     }-*/;
 
@@ -52,9 +69,15 @@ public final class Native {
         return number.toFixed(fractionalDigits);
     }-*/;
 
-    private static native void addEventListenerNative(Element element, String type, EventListener listener) /*-{
-        element.addEventListener(type, function(e){
-            listener.@org.turbogwt.core.util.EventListener::onEvent(Lcom/google/gwt/dom/client/NativeEvent;)(e);
-        });
+    private static native JavaScriptObject addEventListenerNative(Element el, String type, NativeHandler handler) /*-{
+        var listener = function(e){
+            handler.@org.turbogwt.core.util.NativeHandler::onEvent(Lcom/google/gwt/dom/client/NativeEvent;)(e);
+        };
+        el.addEventListener(type, listener);
+        return listener;
+    }-*/;
+
+    private static native void removeEventListenerNative(Element el, String type, JavaScriptObject listener) /*-{
+        el.removeEventListener(type, listener);
     }-*/;
 }

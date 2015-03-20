@@ -16,10 +16,11 @@
 package org.turbogwt.core.util;
 
 import com.google.gwt.dom.client.NativeEvent;
+import com.google.gwt.event.shared.EventHandler;
 
 /**
  * Listener for native events.
  */
-public interface EventListener {
+public interface NativeHandler extends EventHandler {
     public void onEvent(NativeEvent e);
 }
