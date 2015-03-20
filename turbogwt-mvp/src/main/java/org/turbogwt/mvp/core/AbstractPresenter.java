@@ -15,22 +15,27 @@
  */
 package org.turbogwt.mvp.core;
 
+import java.util.LinkedList;
+
 import com.google.gwt.activity.shared.AbstractActivity;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.event.shared.EventBus;
+import com.google.web.bindery.event.shared.HandlerRegistration;
 
 public abstract class AbstractPresenter<T extends View> extends AbstractActivity implements Presenter {
 
     private final T view;
     private final PlaceController placeController;
+    private final LinkedList<HandlerRegistration> handlers;
     private AcceptsOneWidget panel;
     private EventBus eventBus;
 
     protected AbstractPresenter(T view, PlaceController placeController) {
         this.view = view;
         this.placeController = placeController;
+        this.handlers = new LinkedList<HandlerRegistration>();
     }
 
     /**
@@ -62,7 +67,7 @@ public abstract class AbstractPresenter<T extends View> extends AbstractActivity
     /**
      * Called when {@link #onStart} has not yet replied displayed the View, but the user has lost interest.
      * <p>
-     * It's a good practice to call super.onCancel() when overriding this method.
+     * It's a good practice to call super.onCancel() when overriding this method to avoid leaks in the app.
      */
     @Override
     public void onCancel() {
@@ -73,7 +78,7 @@ public abstract class AbstractPresenter<T extends View> extends AbstractActivity
      * Called when the View has been undisplayed.
      * All event handlers registered in this Activity (Presenter) will have been removed before this method is called.
      * <p>
-     * It's a good practice to call super.onStop() when overriding this method.
+     * It's a good practice to call super.onStop() when overriding this method to avoid leaks in the app.
      */
     @Override
     public void onStop() {
@@ -86,6 +91,16 @@ public abstract class AbstractPresenter<T extends View> extends AbstractActivity
 
     protected T getView() {
         return view;
+    }
+
+    /**
+     * Hold a {@link HandlerRegistration} in this Activity, so when the Activity is stopped/cancelled the registrations
+     * are cancelled automatically.
+     *
+     * @param handlerRegistration the handler registration to be cancelled when the Activity is gone.
+     */
+    protected void addHandlerRegistration(HandlerRegistration handlerRegistration) {
+        handlers.add(handlerRegistration);
     }
 
     protected PlaceController getPlaceController() {
@@ -117,10 +132,15 @@ public abstract class AbstractPresenter<T extends View> extends AbstractActivity
     }
 
     /**
-     * Detaches this Presenter from the View and invalidates #getEventBus and #display methods.
+     * Cancels all HandlerRegistrations added via #addHandlerRegistration, detaches this Presenter from the View and
+     * invalidates #getEventBus and #display methods.
      */
     @SuppressWarnings("unchecked")
     private void clear() {
+        for (HandlerRegistration handler : handlers) {
+            handler.removeHandler();
+        }
+        handlers.clear();
         view.setPresenter(null);
         panel = null;
         eventBus = null;
