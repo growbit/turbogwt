@@ -108,11 +108,10 @@
     <maven-surefire-plugin.version>2.16</maven-surefire-plugin.version>
 
     <!-- GWT -->
-    <gwt.version>2.6.0</gwt.version>
-    <gwt-maven-plugin.version>2.6.0</gwt-maven-plugin.version>
+    <gwt.version>2.7.0</gwt.version>
+    <gwt-maven-plugin.version>2.7.0</gwt-maven-plugin.version>
 
     <!-- Java -->
-    <annotation.version>1.2</annotation.version>
     <checkstyle.version>6.0</checkstyle.version>
 
     <!-- Testing -->

@@ -1,7 +1,7 @@
-Turbo GWT Core
+TurboGWT-Core
 ==
 
-**Turbo GWT Core** contains native utilities to perform common operations faster.
+**TurboGWT-Core** contains native utilities to perform common operations faster.
 
 ## Highlights
 
