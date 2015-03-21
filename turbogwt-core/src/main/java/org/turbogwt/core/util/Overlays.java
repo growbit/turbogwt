@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Grow Bit
+ * Copyright 2015 Grow Bit
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -73,7 +73,10 @@ public final class Overlays {
     }
 
     public static String[] getPropertyNames(JavaScriptObject jso, boolean sorted) {
-        return toArray(getPropertyNamesNative(jso, sorted));
+        if (GWT.isScript()) {
+            return getPropertyNamesNativeToArray(jso, sorted);
+        }
+        return Util.toArray(getPropertyNamesNative(jso, sorted));
     }
 
     public static native String getString(JavaScriptObject jso, String property) /*-{
@@ -182,20 +185,8 @@ public final class Overlays {
         return Object.keys(jso);
     }-*/;
 
-    private static native String[] reinterpretCast(JsArrayString value) /*-{
-        return value;
+    private static native String[] getPropertyNamesNativeToArray(JavaScriptObject jso, boolean sorted) /*-{
+        if (sorted) return Object.keys(jso).sort();
+        return Object.keys(jso);
     }-*/;
-
-    private static String[] toArray(JsArrayString values) {
-        if (GWT.isScript()) {
-            return reinterpretCast(values);
-        } else {
-            int length = values.length();
-            String[] ret = new String[length];
-            for (int i = 0; i < length; i++) {
-                ret[i] = values.get(i);
-            }
-            return ret;
-        }
-    }
 }

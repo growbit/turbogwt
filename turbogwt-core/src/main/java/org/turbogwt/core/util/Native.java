@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Grow Bit
+ * Copyright 2015 Grow Bit
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,6 +14,9 @@
  * limitations under the License.
  */
 package org.turbogwt.core.util;
+
+import com.google.gwt.core.client.GWT;
+import com.google.gwt.core.client.JsArrayString;
 
 import javax.annotation.Nullable;
 
@@ -32,11 +35,26 @@ public final class Native {
         return false;
     }-*/;
 
+    public static String[] split(String str, String regex) {
+        if (GWT.isScript()) {
+            return splitNativeToArray(str, regex);
+        }
+        return Util.toArray(splitNative(str, regex));
+    }
+
     public static native String toFixed(double number) /*-{
         return number.toFixed();
     }-*/;
 
     public static native String toFixed(double number, int fractionalDigits) /*-{
         return number.toFixed(fractionalDigits);
+    }-*/;
+
+    private static native JsArrayString splitNative(String str, String regex) /*-{
+        return str.split(regex);
+    }-*/;
+
+    private static native String[] splitNativeToArray(String str, String regex) /*-{
+        return str.split(regex);
     }-*/;
 }
