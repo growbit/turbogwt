@@ -37,9 +37,16 @@ public final class Native {
 
     public static String[] split(String str, String regex) {
         if (GWT.isScript()) {
-            return splitNativeToArray(str, regex);
+            return splitNativeToArray(str, regex, -1);
         }
-        return Util.toArray(splitNative(str, regex));
+        return Util.toArray(splitNative(str, regex, -1));
+    }
+
+    public static String[] split(String str, String regex, int limit) {
+        if (GWT.isScript()) {
+            return splitNativeToArray(str, regex, limit);
+        }
+        return Util.toArray(splitNative(str, regex, limit));
     }
 
     public static native String toFixed(double number) /*-{
@@ -50,11 +57,13 @@ public final class Native {
         return number.toFixed(fractionalDigits);
     }-*/;
 
-    private static native JsArrayString splitNative(String str, String regex) /*-{
-        return str.split(regex);
+    private static native JsArrayString splitNative(String str, String regex, int limit) /*-{
+        if (limit == -1) return str.split(regex);
+        return str.split(regex, limit);
     }-*/;
 
-    private static native String[] splitNativeToArray(String str, String regex) /*-{
-        return str.split(regex);
+    private static native String[] splitNativeToArray(String str, String regex, int limit) /*-{
+        if (limit == -1) return str.split(regex);
+        return str.split(regex, limit);
     }-*/;
 }
