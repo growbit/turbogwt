@@ -15,27 +15,40 @@
  */
 package org.turbogwt.mvp.core;
 
-import java.util.LinkedList;
-
-import com.google.gwt.activity.shared.AbstractActivity;
+import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.place.shared.Place;
 import com.google.gwt.place.shared.PlaceController;
 import com.google.gwt.user.client.ui.AcceptsOneWidget;
 import com.google.web.bindery.event.shared.EventBus;
 import com.google.web.bindery.event.shared.HandlerRegistration;
 
-public abstract class AbstractPresenter<T extends View> extends AbstractActivity implements Presenter {
+import java.util.ArrayList;
+
+/**
+ * Abstract class for every Presenter of the TurboGWT-MVP framework.
+ * It's also an Activity integrating itself to the GWT A&P framework.
+ * <p>
+ * As an Activity, it's always willing to stop.
+ * As a Presenter it provides access to its View as well as the app's EventBus and PlaceController.
+ * Additionally it can hold HandlerRegistration instances (via {@link #addHandlerRegistration}) to cancel them when the
+ * Activity is stopped/cancelled.
+ *
+ * @param <T> The View which this Presenter is attached
+ *
+ * @author Danilo Reinert
+ */
+public abstract class AbstractPresenter<T extends View> implements Activity, Presenter {
 
     private final T view;
     private final PlaceController placeController;
-    private final LinkedList<HandlerRegistration> handlers;
+    private final ArrayList<HandlerRegistration> handlers;
     private AcceptsOneWidget panel;
     private EventBus eventBus;
 
     protected AbstractPresenter(T view, PlaceController placeController) {
         this.view = view;
         this.placeController = placeController;
-        this.handlers = new LinkedList<HandlerRegistration>();
+        this.handlers = new ArrayList<HandlerRegistration>();
     }
 
     /**
@@ -64,6 +77,26 @@ public abstract class AbstractPresenter<T extends View> extends AbstractActivity
         onStart();
     }
 
+    @Override
+    public void goTo(Place place) {
+        placeController.goTo(place);
+    }
+
+    /**
+     * Called when the user is trying to navigate away from this activity.
+     * <p>
+     * If it returns a non-null string, then the user is prompted with this message (via a native alert) to confirm or
+     * cancel the navigation operation.
+     * <p>
+     * It's often used in form-like views, when the user must save the changes before moving out.
+     *
+     * @return A message to display to the user, e.g. to warn of unsaved work, or null to say nothing
+     */
+    @Override
+    public String mayStop() {
+        return null;
+    }
+
     /**
      * Called when {@link #onStart} has not yet replied displayed the View, but the user has lost interest.
      * <p>
@@ -85,14 +118,6 @@ public abstract class AbstractPresenter<T extends View> extends AbstractActivity
         clear();
     }
 
-    public void goTo(Place place) {
-        placeController.goTo(place);
-    }
-
-    protected T getView() {
-        return view;
-    }
-
     /**
      * Hold a {@link HandlerRegistration} in this Activity, so when the Activity is stopped/cancelled the registrations
      * are cancelled automatically.
@@ -103,8 +128,16 @@ public abstract class AbstractPresenter<T extends View> extends AbstractActivity
         handlers.add(handlerRegistration);
     }
 
-    protected PlaceController getPlaceController() {
-        return placeController;
+    /**
+     * Presents the view to the user and completes the start process of the Activity.
+     * Must be called in the {@link AbstractPresenter#onStart()) method.
+     */
+    protected void display() {
+        if (panel == null) {
+            throw new IllegalStateException("The view is not starting yet." +
+                    " This method must be called only in the #onStart method.");
+        }
+        panel.setWidget(view);
     }
 
     /**
@@ -119,16 +152,12 @@ public abstract class AbstractPresenter<T extends View> extends AbstractActivity
         return eventBus;
     }
 
-    /**
-     * Presents the view to the user and completes the start process of the Activity.
-     * Must be called in the {@link AbstractPresenter#onStart()) method.
-     */
-    protected void display() {
-        if (panel == null) {
-            throw new IllegalStateException("The view is not starting yet." +
-                    " This method must be called only in the #onStart method.");
-        }
-        panel.setWidget(view);
+    protected PlaceController getPlaceController() {
+        return placeController;
+    }
+
+    protected T getView() {
+        return view;
     }
 
     /**

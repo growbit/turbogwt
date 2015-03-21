@@ -66,6 +66,7 @@ public class JsArray<T> extends JavaScriptObject {
      * Convert each element of the array to a String and join them with a comma
      * separator. The value returned from this method may vary between browsers
      * based on how JavaScript values are converted into strings.
+     *
      * @return the string representation of joined array
      */
     public final String join() {
