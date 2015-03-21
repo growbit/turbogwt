@@ -17,7 +17,8 @@ public abstract class AbstractView<P extends Presenter> extends Composite implem
 
     public P getPresenter() {
         if (presenter == null) {
-            throw new IllegalStateException("Presenter is null. You forgot to bind it via setPresenter.");
+            throw new IllegalStateException("Presenter is not set. The Presenter must attach itself to the View via " +
+                    "#setPresenter, before the View can use it.");
         }
         return presenter;
     }
