@@ -20,7 +20,7 @@
 
     <!-- Inherit the core Turbo GWT stuff. -->
     <inherits name="org.turbogwt.core.collections.Collections"/>
-    <inherits name="org.turbogwt.core.event.Event"/>
+    <inherits name="org.turbogwt.core.events.Events"/>
     <inherits name="org.turbogwt.core.util.Util"/>
 
     <!--
