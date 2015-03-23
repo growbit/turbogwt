@@ -1,4 +1,4 @@
-package org.turbogwt.mvp.core;
+package org.turbogwt.mvp;
 
 import com.google.gwt.place.shared.Place;
 

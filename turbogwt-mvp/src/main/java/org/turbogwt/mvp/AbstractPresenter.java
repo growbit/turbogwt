@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.turbogwt.mvp.core;
+package org.turbogwt.mvp;
 
 import com.google.gwt.activity.shared.Activity;
 import com.google.gwt.place.shared.Place;
@@ -56,9 +56,9 @@ public abstract class AbstractPresenter<T extends View> implements Activity, Pre
      * <p>
      * Here, the Presenter must set up its View for the user.
      * <p>
-     * At this point, the event bus is set and is accessible from {@link AbstractPresenter#getEventBus}.
+     * At this point, the event bus is set and is accessible from {@link org.turbogwt.mvp.AbstractPresenter#getEventBus}.
      * <p>
-     * When the View is ready, Presenter must display it by calling {@link AbstractPresenter#display()}.
+     * When the View is ready, Presenter must display it by calling {@link org.turbogwt.mvp.AbstractPresenter#display()}.
      * <p>
      * Notice that the Presenter may display the View only after receiving a response from an async request.
      * <p>
@@ -119,7 +119,7 @@ public abstract class AbstractPresenter<T extends View> implements Activity, Pre
     }
 
     /**
-     * Hold a {@link HandlerRegistration} in this Activity, so when the Activity is stopped/cancelled the registrations
+     * Hold a {@link com.google.web.bindery.event.shared.HandlerRegistration} in this Activity, so when the Activity is stopped/cancelled the registrations
      * are cancelled automatically.
      *
      * @param handlerRegistration the handler registration to be cancelled when the Activity is gone.
@@ -130,7 +130,7 @@ public abstract class AbstractPresenter<T extends View> implements Activity, Pre
 
     /**
      * Presents the view to the user and completes the start process of the Activity.
-     * Must be called in the {@link AbstractPresenter#onStart()) method.
+     * Must be called in the {@link org.turbogwt.mvp.AbstractPresenter#onStart()) method.
      */
     protected void display() {
         if (panel == null) {
@@ -144,7 +144,7 @@ public abstract class AbstractPresenter<T extends View> implements Activity, Pre
      * Retrieve the event bus instance associated to a specific place request event.
      * <p>
      * It is available only when the Activity is starting, i.e.,
-     * after the {@link AbstractPresenter#onStart()) method is triggered.
+     * after the {@link org.turbogwt.mvp.AbstractPresenter#onStart()) method is triggered.
      *
      * @return the event bus
      */

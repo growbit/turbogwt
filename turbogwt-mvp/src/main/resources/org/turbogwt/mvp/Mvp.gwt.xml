@@ -15,13 +15,7 @@
   ~ limitations under the License.
   -->
 <module>
-    <!-- Inherit the core Web Toolkit stuff. -->
     <inherits name="com.google.gwt.user.User"/>
 
-    <!-- Inherit the core Turbo GWT stuff. -->
-    <inherits name="org.turbogwt.mvp.core.MvpCore"/>
-
-    <!--
-    <source path="client" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock.java,**/*Stub.java"/>
-    -->
+    <source path="" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock.java,**/*Stub.java"/>
 </module>

@@ -1,4 +1,4 @@
-package org.turbogwt.mvp.core;
+package org.turbogwt.mvp;
 
 import com.google.gwt.user.client.ui.IsWidget;
 
@@ -14,7 +14,7 @@ public interface View<P extends Presenter> extends IsWidget {
     /**
      * Returns the Presenter of this View.
      *
-     * @throws java.lang.IllegalStateException if the Presenter is not attached yet (i.e. is null).
+     * @throws IllegalStateException if the Presenter is not attached yet (i.e. is null).
      *
      * @return the Presenter attached to this view
      */
