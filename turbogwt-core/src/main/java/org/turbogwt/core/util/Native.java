@@ -58,12 +58,12 @@ public final class Native {
     }-*/;
 
     private static native JsArrayString splitNative(String str, String regex, int limit) /*-{
-        if (limit == -1) return str.split(regex);
+        if (limit < 0) return str.split(regex);
         return str.split(regex, limit);
     }-*/;
 
     private static native String[] splitNativeToArray(String str, String regex, int limit) /*-{
-        if (limit == -1) return str.split(regex);
+        if (limit < 0) return str.split(regex);
         return str.split(regex, limit);
     }-*/;
 }

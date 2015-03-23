@@ -26,5 +26,5 @@ import com.google.gwt.event.shared.EventHandler;
  * @author Danilo Reinert
  */
 public interface NativeHandler extends EventHandler {
-    public void onEvent(NativeEvent e);
+    void onEvent(NativeEvent e);
 }
