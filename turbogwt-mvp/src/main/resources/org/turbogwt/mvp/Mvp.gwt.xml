@@ -16,6 +16,7 @@
   -->
 <module>
     <inherits name="com.google.gwt.user.User"/>
+    <inherits name="com.google.gwt.activity.Activity"/>
 
     <source path="" excludes="**/*Test.java,**/*TestSuite.java,**/*TestUtil.java,**/*Mock.java,**/*Stub.java"/>
 </module>

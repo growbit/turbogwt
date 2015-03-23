@@ -30,8 +30,8 @@ import java.util.ArrayList;
  * <p>
  * As an Activity, it's always willing to stop.
  * As a Presenter it provides access to its View as well as the app's EventBus and PlaceController.
- * Additionally it can hold HandlerRegistration instances (via {@link #addHandlerRegistration}) to cancel them when the
- * Activity is stopped/cancelled.
+ * Additionally it can hold HandlerRegistration instances (via {@link #addHandlerRegistration(HandlerRegistration)}) to
+ * cancel them when the Activity is stopped/cancelled.
  *
  * @param <T> The View which this Presenter is attached
  *
@@ -56,15 +56,14 @@ public abstract class AbstractPresenter<T extends View> implements Activity, Pre
      * <p>
      * Here, the Presenter must set up its View for the user.
      * <p>
-     * At this point, the event bus is set and is accessible from {@link org.turbogwt.mvp.AbstractPresenter#getEventBus}.
+     * At this point, the event bus is set and is accessible from {@link #getEventBus()}.
      * <p>
-     * When the View is ready, Presenter must display it by calling {@link org.turbogwt.mvp.AbstractPresenter#display()}.
+     * When the View is ready, Presenter must display it by calling {@link #display()}.
      * <p>
      * Notice that the Presenter may display the View only after receiving a response from an async request.
      * <p>
      * Any handlers attached to the provided event bus will be de-registered when the activity is stopped, so activities
-     * will rarely need to hold on to the {@link com.google.gwt.event.shared.HandlerRegistration HandlerRegistration}
-     * instances returned by {@link com.google.gwt.event.shared.EventBus#addHandler}.
+     * will rarely need to hold on to the {@link HandlerRegistration} instances returned by {@link EventBus#addHandler}.
      */
     public abstract void onStart();
 
@@ -119,8 +118,8 @@ public abstract class AbstractPresenter<T extends View> implements Activity, Pre
     }
 
     /**
-     * Hold a {@link com.google.web.bindery.event.shared.HandlerRegistration} in this Activity, so when the Activity is stopped/cancelled the registrations
-     * are cancelled automatically.
+     * Hold a {@link HandlerRegistration} in this Activity, so when the Activity is
+     * stopped/cancelled the registrations are cancelled automatically.
      *
      * @param handlerRegistration the handler registration to be cancelled when the Activity is gone.
      */
@@ -130,7 +129,7 @@ public abstract class AbstractPresenter<T extends View> implements Activity, Pre
 
     /**
      * Presents the view to the user and completes the start process of the Activity.
-     * Must be called in the {@link org.turbogwt.mvp.AbstractPresenter#onStart()) method.
+     * Must be called in the {@link #onStart()) method.
      */
     protected void display() {
         if (panel == null) {
@@ -144,7 +143,7 @@ public abstract class AbstractPresenter<T extends View> implements Activity, Pre
      * Retrieve the event bus instance associated to a specific place request event.
      * <p>
      * It is available only when the Activity is starting, i.e.,
-     * after the {@link org.turbogwt.mvp.AbstractPresenter#onStart()) method is triggered.
+     * after the {@link #onStart()) method is triggered.
      *
      * @return the event bus
      */
@@ -161,8 +160,8 @@ public abstract class AbstractPresenter<T extends View> implements Activity, Pre
     }
 
     /**
-     * Cancels all HandlerRegistrations added via #addHandlerRegistration, detaches this Presenter from the View and
-     * invalidates #getEventBus and #display methods.
+     * Cancels all HandlerRegistrations added via {@link #addHandlerRegistration(HandlerRegistration)},
+     * detaches this Presenter from the View and invalidates {@link #getEventBus()} and {@link #display()} methods.
      */
     @SuppressWarnings("unchecked")
     private void clear() {
