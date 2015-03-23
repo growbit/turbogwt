@@ -21,9 +21,9 @@ public interface View<P extends Presenter> extends IsWidget {
     P getPresenter();
 
     /**
-     * Attaches a Presenter of this View.
+     * Attaches a Presenter to this View.
      * <p>
-     * It's called by the Presenter before displaying this View.
+     * It's called by the Presenter before displaying the View.
      *
      * @param presenter the Presenter of this View.
      */
